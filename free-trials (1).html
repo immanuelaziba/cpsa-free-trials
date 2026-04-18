@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPSA Free Trials — Systems for Early-Stage Startups</title>
+<link rel="icon" type="image/png" href="Favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ─── Reset ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── Tokens ─────────────────────────────── */
+:root {
+  --mist:          #EAE8E2;
+  --mist-surface:  #F4F3F0;
+  --mist-elevated: #FFFFFF;
+  --graphite:      #303438;
+  --graphite-mid:  #44484C;
+  --graphite-muted:#55585C;
+  --crimson:       #A12121;
+  --crimson-hover: #8E1D1D;
+  --gold:          #C6A357;
+  --gold-faint:    rgba(198,163,87,0.18);
+  --gold-divider:  rgba(198,163,87,0.22);
+  --aqua:          #35D3C5;
+  --aqua-ring:     rgba(53,211,197,0.28);
+  --border:        rgba(48,52,56,0.11);
+  --border-strong: rgba(48,52,56,0.22);
+  --shadow-soft:   0 2px 12px rgba(48,52,56,0.07);
+  --shadow-card:   0 1px 3px rgba(48,52,56,0.06), 0 4px 16px rgba(48,52,56,0.06);
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+}
+
+/* ─── Base ─────────────────────────────── */
+body {
+  background: var(--mist);
+  font-family: 'Manrope', 'Calibri', sans-serif;
+  color: var(--graphite);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Geometry ─────────────────────────────── */
+.geo {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+.geo-ring-1 {
+  width: 560px; height: 560px;
+  border-radius: 50%;
+  border: 1px solid rgba(198,163,87,0.10);
+  top: -180px; right: -160px;
+}
+.geo-ring-2 {
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(198,163,87,0.07);
+  top: -80px; right: -80px;
+}
+.geo-ring-3 {
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  border: 1px solid rgba(48,52,56,0.05);
+  bottom: 120px; left: -120px;
+}
+
+/* ─── Layout ─────────────────────────────── */
+.page { position: relative; z-index: 1; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+/* ─── Nav ─────────────────────────────── */
+.nav {
+  padding: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gold-divider);
+  margin-bottom: 0;
+  animation: fu 0.4s cubic-bezier(.23,1,.32,1) both;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.nav-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--graphite);
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-mark span {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600; font-size: 14px;
+  color: var(--mist); letter-spacing: -0.01em;
+}
+.nav-name {
+  font-size: 14px; font-weight: 500;
+  color: var(--graphite); letter-spacing: 0.01em;
+}
+.nav-link {
+  font-size: 13px; font-weight: 500;
+  color: var(--graphite-muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 7px 16px; border-radius: 20px;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+.nav-link:hover { border-color: var(--border-strong); color: var(--graphite); }
+
+/* ─── Hero ─────────────────────────────── */
+.hero {
+  padding: 80px 0 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  animation: fu 0.5s 0.05s cubic-bezier(.23,1,.32,1) both;
+}
+.hero-left {}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.09em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-eyebrow-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+}
+.hero-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(32px, 3.8vw, 52px);
+  color: var(--graphite);
+  letter-spacing: -0.018em;
+  line-height: 1.08;
+  margin-bottom: 20px;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--crimson);
+}
+.hero-body {
+  font-size: 16px; color: var(--graphite-muted);
+  line-height: 1.68; max-width: 440px;
+  margin-bottom: 36px;
+}
+.hero-ctas {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--crimson); color: var(--mist);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; font-weight: 500;
+  padding: 12px 22px; border-radius: var(--r-md);
+  border: none; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, transform 200ms cubic-bezier(.23,1,.32,1);
+}
+.btn-primary:hover { background: var(--crimson-hover); transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; color: var(--graphite);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; font-weight: 500;
+  padding: 12px 18px; border-radius: var(--r-md);
+  border: 1px solid var(--border); cursor: pointer;
+  text-decoration: none;
+  transition: border-color 200ms ease, transform 200ms cubic-bezier(.23,1,.32,1);
+}
+.btn-ghost:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+
+.hero-right {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.stat-card {
+  background: var(--mist-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.stat-card.accent-gold { border-left: 3px solid var(--gold); padding-left: 21px; }
+.stat-card.accent-aqua { border-left: 3px solid var(--aqua); padding-left: 21px; }
+.stat-card.accent-crimson { border-left: 3px solid var(--crimson); padding-left: 21px; }
+.stat-n {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600; font-size: 28px;
+  color: var(--graphite); letter-spacing: -0.015em;
+  min-width: 40px;
+}
+.stat-body {}
+.stat-label {
+  font-size: 14px; font-weight: 500; color: var(--graphite);
+  margin-bottom: 2px;
+}
+.stat-sub { font-size: 12px; color: var(--graphite-muted); }
+
+/* ─── Section header ─────────────────────────────── */
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
+  animation: fu 0.5s 0.12s cubic-bezier(.23,1,.32,1) both;
+}
+.section-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600; font-size: 22px;
+  color: var(--graphite); letter-spacing: -0.01em;
+}
+
+/* ─── Filters ─────────────────────────────── */
+.filters {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.filter-btn {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px; font-weight: 500;
+  padding: 5px 13px; border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--mist-surface);
+  color: var(--graphite-muted);
+  cursor: pointer; letter-spacing: 0.02em;
+  transition: all 180ms ease;
+}
+.filter-btn:hover { border-color: var(--border-strong); color: var(--graphite); }
+.filter-btn.active { background: var(--graphite); border-color: var(--graphite); color: var(--mist); }
+
+/* ─── Divider ─────────────────────────────── */
+.divider {
+  height: 1px; background: var(--gold-divider);
+  margin: 48px 0;
+  animation: fu 0.5s 0.08s cubic-bezier(.23,1,.32,1) both;
+}
+
+/* ─── Grid ─────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  animation: fu 0.5s 0.16s cubic-bezier(.23,1,.32,1) both;
+  margin-bottom: 80px;
+}
+
+/* ─── Card ─────────────────────────────── */
+.card {
+  background: var(--mist-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 24px;
+  cursor: pointer;
+  transition: transform 260ms cubic-bezier(.23,1,.32,1),
+              border-color 200ms ease,
+              box-shadow 260ms ease;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+.card.live::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+}
+.card.dev {
+  background: linear-gradient(160deg, var(--mist-surface) 0%, rgba(234,232,226,0.6) 100%);
+}
+.card.dev::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(198,163,87,0.35) 0px, rgba(198,163,87,0.35) 8px,
+    transparent 8px, transparent 14px
+  );
+}
+
+.card-head {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 18px;
+}
+.card-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-icon.live { background: var(--graphite); }
+.card-icon.dev  { background: rgba(48,52,56,0.10); }
+.card-icon svg {
+  width: 19px; height: 19px;
+  fill: none; stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.card-icon.live svg { stroke: var(--mist); }
+.card-icon.dev  svg { stroke: var(--graphite-muted); }
+
+.badge {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px; flex-shrink: 0;
+}
+.badge-live { background: rgba(53,211,197,0.14); color: #0A6560; }
+.badge-dev  { background: rgba(198,163,87,0.15); color: #7A6023; }
+
+.card-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600; font-size: 19px;
+  color: var(--graphite); letter-spacing: -0.012em;
+  line-height: 1.15; margin-bottom: 8px;
+}
+.card-jtbd {
+  font-size: 13px; color: var(--graphite-muted);
+  line-height: 1.58; margin-bottom: 8px;
+}
+.card-eta {
+  font-size: 12px; font-weight: 500;
+  color: var(--gold); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 5px;
+}
+.card-eta-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+}
+
+.card-caps {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  margin-bottom: 20px;
+}
+.cap {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
+  padding: 3px 9px; border-radius: 6px;
+  background: rgba(48,52,56,0.07); color: var(--graphite-muted);
+}
+
+.card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: auto; padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.card-cat {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gold);
+}
+.card-action {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 500; color: var(--graphite);
+  transition: gap 200ms ease;
+}
+.card.dev .card-action { color: var(--graphite-muted); }
+.card:hover .card-action { gap: 7px; }
+.card-action svg {
+  width: 14px; height: 14px;
+  stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round;
+  transition: transform 200ms ease;
+}
+.card:hover .card-action svg { transform: translate(2px, -2px); }
+
+/* ─── Footer ─────────────────────────────── */
+.page-footer {
+  border-top: 1px solid var(--gold-divider);
+  padding: 32px 0 48px;
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600; font-size: 15px;
+  color: var(--graphite); letter-spacing: -0.01em;
+}
+.footer-meta {
+  font-size: 12px; color: rgba(48,52,56,0.38);
+  letter-spacing: 0.03em;
+}
+
+/* ─── Modal overlay ─────────────────────────────── */
+.overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(28,26,24,0.60);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 240ms ease;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--mist-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  width: 100%; max-width: 580px;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  transform: scale(0.96) translateY(10px);
+  transition: transform 280ms cubic-bezier(.23,1,.32,1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(48,52,56,0.15) transparent;
+}
+.overlay.open .modal { transform: scale(1) translateY(0); }
+
+/* ─── Modal internals ─────────────────────────────── */
+.modal-snapshot {
+  width: 100%;
+  background: var(--graphite);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  min-height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 32px 28px;
+}
+.snapshot-placeholder {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  text-align: center;
+}
+.snapshot-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+}
+.snapshot-icon svg {
+  width: 24px; height: 24px;
+  fill: none; stroke: rgba(234,232,226,0.7);
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+}
+.snapshot-label {
+  font-size: 13px; color: rgba(234,232,226,0.45);
+  font-weight: 400; max-width: 280px; line-height: 1.5;
+}
+.snapshot-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(198,163,87,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198,163,87,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.snapshot-status {
+  position: absolute; top: 14px; right: 14px;
+}
+.snapshot-badge {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px;
+}
+.snapshot-badge.live {
+  background: rgba(53,211,197,0.18); color: #3CE0D2;
+  border: 1px solid rgba(53,211,197,0.25);
+}
+.snapshot-badge.dev {
+  background: rgba(198,163,87,0.18); color: #D4AC62;
+  border: 1px solid rgba(198,163,87,0.28);
+}
+
+.modal-body { padding: 28px 28px 24px; }
+
+.modal-close {
+  position: absolute; top: 14px; left: 14px;
+  width: 30px; height: 30px; border-radius: 8px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 2;
+  transition: background 180ms ease;
+}
+.modal-close:hover { background: rgba(255,255,255,0.18); }
+.modal-close svg {
+  width: 13px; height: 13px;
+  stroke: rgba(234,232,226,0.8); fill: none;
+  stroke-width: 1.5; stroke-linecap: round;
+}
+
+.modal-title-row {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px; margin-bottom: 18px;
+}
+.modal-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600; font-size: 22px;
+  color: var(--graphite); letter-spacing: -0.012em;
+  line-height: 1.15;
+}
+.modal-cat {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gold); margin-top: 4px;
+}
+
+.modal-divider { height: 1px; background: var(--gold-divider); margin: 20px 0; }
+
+.modal-sec-label {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
+}
+.modal-desc {
+  font-size: 14px; color: var(--graphite-muted);
+  line-height: 1.68; margin-bottom: 20px;
+}
+
+.modal-minis {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 20px;
+}
+.mini {
+  background: var(--mist-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 12px 14px;
+}
+.mini-label {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+.mini-val { font-size: 13px; color: var(--graphite); font-weight: 500; line-height: 1.4; }
+
+.modal-features { display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
+.feat {
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.feat-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); margin-top: 7px; flex-shrink: 0;
+}
+.feat-text { font-size: 13px; color: var(--graphite-muted); line-height: 1.55; }
+
+/* ─── Dev notice ─────────────────────────────── */
+.dev-notice {
+  background: rgba(198,163,87,0.10);
+  border: 1px solid rgba(198,163,87,0.28);
+  border-radius: var(--r-sm);
+  padding: 14px 16px; margin-bottom: 20px;
+}
+.dev-notice-head {
+  display: flex; align-items: center; gap: 7px;
+  margin-bottom: 6px;
+}
+.dev-notice-head svg {
+  width: 14px; height: 14px;
+  stroke: #9A7D3A; fill: none; stroke-width: 1.5; stroke-linecap: round;
+  flex-shrink: 0;
+}
+.dev-notice-title {
+  font-size: 13px; font-weight: 500; color: #5C4A18;
+}
+.dev-notice p { font-size: 13px; color: #7A6023; line-height: 1.58; }
+
+/* ─── Waitlist form ─────────────────────────────── */
+.waitlist-form {
+  background: var(--mist-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 18px; margin-bottom: 8px;
+}
+.waitlist-label {
+  font-size: 13px; font-weight: 500; color: var(--graphite);
+  margin-bottom: 10px; display: block;
+}
+.waitlist-row {
+  display: flex; gap: 8px; align-items: stretch;
+}
+.waitlist-input {
+  flex: 1;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; font-weight: 400;
+  color: var(--graphite);
+  background: var(--mist-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.waitlist-input::placeholder { color: rgba(48,52,56,0.35); }
+.waitlist-input:focus {
+  border-color: rgba(53,211,197,0.55);
+  box-shadow: 0 0 0 3px var(--aqua-ring);
+}
+.waitlist-submit {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px; font-weight: 500;
+  background: var(--graphite); color: var(--mist);
+  border: none; border-radius: var(--r-sm);
+  padding: 10px 18px; cursor: pointer;
+  white-space: nowrap;
+  transition: background 180ms ease, transform 200ms ease;
+}
+.waitlist-submit:hover { background: var(--graphite-mid); transform: translateY(-1px); }
+.waitlist-confirm {
+  display: none; font-size: 13px; color: #0A6560;
+  font-weight: 500; text-align: center;
+  padding: 10px 0;
+}
+
+.modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.btn-modal-primary {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--crimson); color: var(--mist);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; font-weight: 500;
+  padding: 11px 22px; border-radius: var(--r-md);
+  border: none; cursor: pointer; text-decoration: none;
+  transition: background 200ms ease, transform 200ms ease;
+}
+.btn-modal-primary:hover { background: var(--crimson-hover); transform: translateY(-1px); }
+.btn-modal-primary svg {
+  width: 13px; height: 13px; stroke: currentColor;
+  fill: none; stroke-width: 1.5; stroke-linecap: round;
+}
+.btn-modal-ghost {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent; color: var(--graphite);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; font-weight: 500;
+  padding: 11px 18px; border-radius: var(--r-md);
+  border: 1px solid var(--border); cursor: pointer;
+  transition: border-color 200ms ease;
+}
+.btn-modal-ghost:hover { border-color: var(--border-strong); }
+
+/* ─── Animations ─────────────────────────────── */
+@keyframes fu {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 760px) {
+  .wrap { padding: 0 20px; }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px; padding: 56px 0 48px;
+  }
+  .hero-right { display: none; }
+  .modal-minis { grid-template-columns: 1fr; }
+  .waitlist-row { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Geometric accents -->
+<div class="geo geo-ring-1"></div>
+<div class="geo geo-ring-2"></div>
+<div class="geo geo-ring-3"></div>
+
+<div class="page">
+<div class="wrap">
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="https://cpsa.vercel.app/" class="nav-brand">
+      <img src="Immanuel_Aziba_Logo.svg" alt="Immanuel Aziba logo" style="height:28px;width:auto;display:block">
+    </a>
+    <a href="https://immanuelaziba-cpsa.vercel.app/" class="nav-link">Book a session →</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Free Trials · No setup required
+      </div>
+      <h1 class="hero-title">Operating systems built for<em> early-stage</em> founders.</h1>
+      <p class="hero-body">Not SaaS subscriptions. Not generic templates. Each system below is purpose-built for one high-friction startup problem — and free to trial, immediately.</p>
+      <div class="hero-ctas">
+        <a href="#systems" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 2v10M2 7l5 5 5-5"/></svg>
+          Explore systems
+        </a>
+        <a href="https://cpsa.vercel.app/" class="btn-ghost" target="_blank" rel="noopener">View portfolio</a>
+      </div>
+    </div>
+    <div class="hero-right" id="stat-cards">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Systems section -->
+  <section id="systems">
+    <div class="section-header">
+      <h2 class="section-title">All systems</h2>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-cat="all">All</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="footer-inner">
+      <span class="footer-brand">Immanuel Aziba · CPSA OS</span>
+      <span class="footer-meta">Version 2.0 · April 2026 · Free to trial</span>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="System details">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+/* ─────────────────────────────────────────
+   SYSTEMS DATA
+   Edit this array to add / update / remove systems.
+   See SYSTEMS.md for the full data guide.
+   ───────────────────────────────────────── */
+const SYSTEMS = [
+  {
+    id: "ops-hub",
+    name: "Ops Hub",
+    jtbd: "Replace scattered spreadsheets with a single operations command centre.",
+    category: "Operations",
+    status: "live",
+    url: "https://cpsa-free-trials.vercel.app/ops-hub",
+    icon: "ops",
+    capabilities: ["SOPs", "Task tracking", "Team wikis"],
+    replaces: "Notion + Asana + spreadsheets",
+    idealFor: "Startups of 2–20 people pre-Series A",
+    description: "Ops Hub consolidates your standard operating procedures, recurring task management, and internal knowledge base into one calm, structured workspace. Built on the principle that clarity at the operations layer compounds into velocity at the product layer.",
+    features: [
+      "Structured SOP library with version history",
+      "Weekly and sprint-level task boards",
+      "Onboarding checklists for new hires",
+      "Decision log to reduce repeated conversations"
+    ],
+    snapshot: "Ops Hub dashboard — SOP library, task board, and team wiki in a single view.",
+    eta: null
+  },
+  {
+    id: "pitch-os",
+    name: "Pitch OS",
+    jtbd: "Build, iterate and track your fundraising narrative in one place.",
+    category: "Fundraising",
+    status: "live",
+    url: "https://cpsa-free-trials.vercel.app/pitch-os",
+    icon: "pitch",
+    capabilities: ["Deck builder", "Investor CRM", "Round tracker"],
+    replaces: "Slides + Airtable + email threads",
+    idealFor: "Founders preparing pre-seed to Series A",
+    description: "Pitch OS is an end-to-end fundraising workspace. Structure your narrative, manage investor relationships, and track round progress — without ever losing a thread. Designed for founders who are raising while still building.",
+    features: [
+      "Narrative canvas: problem, solution, traction, ask",
+      "Investor pipeline with stage and sentiment tracking",
+      "Round metrics dashboard: committed, soft-circled, target",
+      "Follow-up scheduler with email draft templates"
+    ],
+    snapshot: "Pitch OS — investor pipeline view with round progress and narrative canvas.",
+    eta: null
+  },
+  {
+    id: "growth-engine",
+    name: "Growth Engine",
+    jtbd: "Turn early traction signals into a repeatable acquisition loop.",
+    category: "Growth",
+    status: "dev",
+    url: null,
+    icon: "growth",
+    capabilities: ["Channel tracking", "Funnel analytics", "Experiment log"],
+    replaces: "Mixpanel + spreadsheets + gut feel",
+    idealFor: "Post-MVP startups seeking product-market fit",
+    description: "Growth Engine gives you a structured framework for running acquisition experiments, logging learnings, and identifying which channels compound. Removes the chaos from early growth and replaces it with a disciplined operating rhythm.",
+    features: [
+      "Channel performance matrix across paid, organic, referral",
+      "Experiment log with hypothesis, result and verdict",
+      "Weekly growth review template",
+      "Cohort retention view for identifying stickiness"
+    ],
+    snapshot: null,
+    eta: "Q3 2026"
+  },
+  {
+    id: "runway-desk",
+    name: "Runway Desk",
+    jtbd: "Know your financial position at any moment — no accountant needed.",
+    category: "Finance",
+    status: "dev",
+    url: null,
+    icon: "finance",
+    capabilities: ["Burn rate", "Runway calc", "Budget vs actuals"],
+    replaces: "Excel models + Xero exports",
+    idealFor: "Pre-revenue to early-revenue startups",
+    description: "Runway Desk gives founders a living financial dashboard that is always current. Track burn, model scenarios, and understand your actual runway — not the optimistic spreadsheet version.",
+    features: [
+      "Real-time burn rate and runway calculator",
+      "Scenario modelling: conservative, base, optimistic",
+      "Budget vs actuals by department",
+      "Monthly close checklist to stay audit-ready"
+    ],
+    snapshot: null,
+    eta: "Q4 2026"
+  },
+  {
+    id: "hiring-stack",
+    name: "Hiring Stack",
+    jtbd: "Run a structured hiring process without HR software costs.",
+    category: "People",
+    status: "dev",
+    url: null,
+    icon: "people",
+    capabilities: ["Role design", "Pipeline CRM", "Structured interviews"],
+    replaces: "Greenhouse / Lever / ad-hoc email",
+    idealFor: "Startups making their first 5–15 hires",
+    description: "Hiring Stack gives early-stage founders a repeatable, structured hiring system — from role definition to offer. Removes founder bias from the process and replaces it with a consistent evaluation framework.",
+    features: [
+      "Role design canvas: outcomes, not just requirements",
+      "Candidate pipeline with evaluation scorecards",
+      "Structured interview question sets by role type",
+      "Offer letter templates and comp benchmarking guide"
+    ],
+    snapshot: null,
+    eta: "Q1 2027"
+  },
+  {
+    id: "product-compass",
+    name: "Product Compass",
+    jtbd: "Decide what to build next — and explain why — with confidence.",
+    category: "Product",
+    status: "dev",
+    url: null,
+    icon: "product",
+    capabilities: ["Roadmap", "Prioritisation", "User insights"],
+    replaces: "Jira + ProductBoard + sticky notes",
+    idealFor: "Founders doubling as first product manager",
+    description: "Product Compass is a structured decision-making system for early-stage product work. It helps founder-PMs capture signals, prioritise with a framework, and communicate the roadmap in a way that builds alignment with investors and teams.",
+    features: [
+      "Opportunity backlog with impact and effort scoring",
+      "User insight repository linked to roadmap items",
+      "Now / Next / Later roadmap with rationale layer",
+      "Stakeholder-facing roadmap view — no internal noise"
+    ],
+    snapshot: null,
+    eta: "Q2 2027"
+  }
+];
+
+/* ─────────────────────────────────────────
+   ICON PATHS (Lucide/Phosphor, 24px viewBox, stroke-based)
+   To add a new icon, add a key here and reference it in SYSTEMS.
+   ───────────────────────────────────────── */
+const ICON_PATHS = {
+  ops:     `<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>`,
+  pitch:   `<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>`,
+  growth:  `<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>`,
+  finance: `<rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>`,
+  people:  `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  product: `<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>`
+};
+
+/* ─────────────────────────────────────────
+   COMPUTED COUNTS (auto-updates from SYSTEMS array)
+   ───────────────────────────────────────── */
+const liveCount = SYSTEMS.filter(s => s.status === 'live').length;
+const devCount  = SYSTEMS.filter(s => s.status === 'dev').length;
+
+/* ─── Hero stat cards ───────────────────── */
+const statCards = document.getElementById('stat-cards');
+statCards.innerHTML = `
+  <div class="stat-card accent-aqua">
+    <div class="stat-n">${liveCount}</div>
+    <div class="stat-body">
+      <div class="stat-label">Live systems</div>
+      <div class="stat-sub">Ready to trial, no setup required</div>
+    </div>
+  </div>
+  <div class="stat-card accent-gold">
+    <div class="stat-n">${devCount}</div>
+    <div class="stat-body">
+      <div class="stat-label">In development</div>
+      <div class="stat-sub">Join the waitlist for early access</div>
+    </div>
+  </div>
+  <div class="stat-card accent-crimson">
+    <div class="stat-n">Free</div>
+    <div class="stat-body">
+      <div class="stat-label">To trial</div>
+      <div class="stat-sub">No card, no commitment, no friction</div>
+    </div>
+  </div>`;
+
+/* ─── Filters ───────────────────────────── */
+const cats = [...new Set(SYSTEMS.map(s => s.category))];
+const filtersEl = document.getElementById('filters');
+cats.forEach(c => {
+  const b = document.createElement('button');
+  b.className = 'filter-btn';
+  b.dataset.cat = c;
+  b.textContent = c;
+  filtersEl.appendChild(b);
+});
+
+let activeCat = 'all';
+
+/* ─── Grid render ───────────────────────── */
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  const list = activeCat === 'all' ? SYSTEMS : SYSTEMS.filter(s => s.category === activeCat);
+  list.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = `card ${s.status}`;
+    card.style.animationDelay = (i * 0.055) + 's';
+    card.innerHTML = `
+      <div class="card-head">
+        <div class="card-icon ${s.status}">
+          <svg viewBox="0 0 24 24">${ICON_PATHS[s.icon] || ICON_PATHS.ops}</svg>
+        </div>
+        <span class="badge badge-${s.status}">${s.status === 'live' ? 'Live' : 'In development'}</span>
+      </div>
+      <div class="card-name">${s.name}</div>
+      <div class="card-jtbd">${s.jtbd}</div>
+      ${s.status === 'dev' && s.eta ? `
+        <div class="card-eta">
+          <span class="card-eta-dot"></span>
+          Est. ${s.eta}
+        </div>` : ''}
+      <div class="card-caps">${s.capabilities.map(c => `<span class="cap">${c}</span>`).join('')}</div>
+      <div class="card-foot">
+        <span class="card-cat">${s.category}</span>
+        <span class="card-action">
+          ${s.status === 'live' ? 'Preview' : 'Learn more'}
+          <svg viewBox="0 0 14 14"><path d="M2 7h10M7.5 3 12 7l-4.5 4"/></svg>
+        </span>
+      </div>`;
+    card.addEventListener('click', () => openModal(s));
+    grid.appendChild(card);
+  });
+}
+
+/* ─── Modal ─────────────────────────────── */
+function openModal(s) {
+  const overlay = document.getElementById('overlay');
+  const modal   = document.getElementById('modal');
+  const isLive  = s.status === 'live';
+
+  const snapshotContent = isLive
+    ? `<div class="snapshot-placeholder">
+        <div class="snapshot-icon"><svg viewBox="0 0 24 24">${ICON_PATHS[s.icon] || ICON_PATHS.ops}</svg></div>
+        <div class="snapshot-label">${s.snapshot || 'Screenshot coming soon — trial the live system to explore.'}</div>
+       </div>`
+    : `<div class="snapshot-placeholder">
+        <div class="snapshot-icon"><svg viewBox="0 0 24 24">${ICON_PATHS[s.icon] || ICON_PATHS.ops}</svg></div>
+        <div class="snapshot-label">Preview available when system goes live — est. ${s.eta || 'TBD'}.</div>
+       </div>`;
+
+  modal.innerHTML = `
+    <div class="modal-snapshot">
+      <div class="snapshot-grid"></div>
+      <button class="modal-close" id="modal-close" aria-label="Close modal">
+        <svg viewBox="0 0 13 13"><path d="M1 1l11 11M12 1 1 12"/></svg>
+      </button>
+      <div class="snapshot-status">
+        <span class="snapshot-badge ${s.status}">${isLive ? 'Live' : `Est. ${s.eta || 'TBD'}`}</span>
+      </div>
+      ${snapshotContent}
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-title-row">
+        <div>
+          <div class="modal-title">${s.name}</div>
+          <div class="modal-cat">${s.category}</div>
+        </div>
+      </div>
+
+      ${!isLive ? `
+      <div class="dev-notice">
+        <div class="dev-notice-head">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2.5 2.5"/></svg>
+          <span class="dev-notice-title">In development — estimated ${s.eta || 'TBD'}</span>
+        </div>
+        <p>This system is currently being built to the spec below. Join the waitlist to be first in when it launches — no spam, one email only.</p>
+      </div>` : ''}
+
+      <div class="modal-sec-label">What it does</div>
+      <div class="modal-desc">${s.description}</div>
+
+      <div class="modal-minis">
+        <div class="mini">
+          <div class="mini-label">Replaces</div>
+          <div class="mini-val">${s.replaces}</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Ideal for</div>
+          <div class="mini-val">${s.idealFor}</div>
+        </div>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div class="modal-sec-label">Key capabilities</div>
+      <div class="modal-features">
+        ${s.features.map(f => `
+          <div class="feat">
+            <div class="feat-dot"></div>
+            <div class="feat-text">${f}</div>
+          </div>`).join('')}
+      </div>
+
+      <div class="modal-divider"></div>
+
+      ${isLive ? `
+      <div class="modal-actions">
+        <a class="btn-modal-primary" href="${s.url}" target="_blank" rel="noopener">
+          Try it free
+          <svg viewBox="0 0 13 13"><path d="M1.5 11.5l10-10M11.5 4.5v-3h-3"/></svg>
+        </a>
+        <button class="btn-modal-ghost" onclick="this.closest('.overlay').classList.remove('open')">Maybe later</button>
+      </div>` : `
+      <div class="waitlist-form" id="waitlist-${s.id}">
+        <label class="waitlist-label">Get notified when ${s.name} launches</label>
+        <div class="waitlist-row">
+          <input class="waitlist-input" type="email" placeholder="your@email.com" id="wl-input-${s.id}">
+          <button class="waitlist-submit" onclick="submitWaitlist('${s.id}', '${s.name}')">Join waitlist</button>
+        </div>
+      </div>
+      <div class="waitlist-confirm" id="wl-confirm-${s.id}">
+        You're on the list for ${s.name}. We'll reach out when it's ready.
+      </div>
+      <div class="modal-actions">
+        <button class="btn-modal-ghost" onclick="this.closest('.overlay').classList.remove('open')">Back to systems</button>
+      </div>`}
+    </div>`;
+
+  overlay.classList.add('open');
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  modal.scrollTop = 0;
+}
+
+function submitWaitlist(id, name) {
+  const input   = document.getElementById(`wl-input-${id}`);
+  const form    = document.getElementById(`waitlist-${id}`);
+  const confirm = document.getElementById(`wl-confirm-${id}`);
+  if (!input || !input.value.includes('@')) {
+    input.style.borderColor = 'rgba(161,33,33,0.55)';
+    input.focus();
+    return;
+  }
+  /* In production: POST input.value + id to your waitlist endpoint */
+  form.style.display = 'none';
+  confirm.style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+}
+
+document.getElementById('overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ─── Filter logic ──────────────────────── */
+document.querySelectorAll('.filter-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    activeCat = b.dataset.cat;
+    renderGrid();
+  });
+});
+
+/* ─── Init ──────────────────────────────── */
+renderGrid();
+</script>
+</body>
+</html>
